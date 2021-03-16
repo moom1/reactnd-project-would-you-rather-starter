@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router";
 import { handleAuthedUser } from "../actions/authedUser";
+import Home from "./Home";
 
 class Login extends Component {
   state = {
@@ -48,7 +49,7 @@ class Login extends Component {
         </select>
 
         <button className="btn" type="submit">
-          Submit
+          Log in
         </button>
       </form>
     );

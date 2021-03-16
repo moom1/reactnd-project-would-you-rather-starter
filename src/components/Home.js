@@ -1,6 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default function Home() {
-  return <div>hi</div>;
+class Home extends Component {
+  render() {
+    return <div>sss</div>;
+  }
 }
+
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser,
+  };
+}
+export default connect(mapStateToProps)(Home);
