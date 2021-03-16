@@ -6,13 +6,13 @@ export default function Nav() {
     <nav className="nav">
       <ul>
         <li>
-          <NavLink to="/" exact activeClassName="active">
+          <NavLink to="/home" exact activeClassName="active">
             Home
           </NavLink>
         </li>
         <li>
           <NavLink to="/new-question" activeClassName="active">
-            Question
+            New Question
           </NavLink>
         </li>
         <li>
