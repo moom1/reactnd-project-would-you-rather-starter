@@ -6,6 +6,8 @@ import Login from "./Login";
 import Home from "./Home";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Nav from "./Nav";
+import "bootstrap/dist/css/bootstrap.min.css";
+import CardDetails from "./CardDetails";
 
 class App extends Component {
   componentDidMount() {
@@ -26,10 +28,13 @@ class App extends Component {
                 {authorized ? (
                   <Redirect to="/home" />
                 ) : (
-                  <Redirect to="/Login" />
+                  <Redirect to="/login" />
                 )}
+
                 <Route path="/login" exact component={Login} />
                 <Route path="/home" exact component={Home} />
+                <Route path="/question/:id" component={CardDetails} />
+
                 <Route path="/new-Question" />
                 <Route path="/leaderBoard" />
               </div>

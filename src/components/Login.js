@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router";
 import { handleAuthedUser } from "../actions/authedUser";
-import Home from "./Home";
-
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 class Login extends Component {
   state = {
     user: null,
@@ -22,8 +22,6 @@ class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     const { user } = this.state;
-    console.log(user);
-
     const { dispatch } = this.props;
     dispatch(handleAuthedUser(user));
     this.setState(() => ({
@@ -36,22 +34,53 @@ class Login extends Component {
       return <Redirect to="/home" />;
     }
     return (
-      <form className="new-tweet" onSubmit={this.handleLogin}>
-        <select value={this.state.value} onChange={this.handleSelect}>
-          <option>User to sign with</option>
-          {this.props.usersInfo.map((user) => {
-            return (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            );
-          })}
-        </select>
+      <Card className="center">
+        <Card.Body>
+          <Card.Header>Welcome To The Would You Rather App!</Card.Header>
+          <Card.Title className="my-2">Please sign in to continue</Card.Title>
+          {/* finish up the logo and add the h2 SIGN IN part */}
+          <Card.Img
+            variant="top"
+            src="https://miro.medium.com/max/1200/1*i1yreXvK0kGrS9_uy5qKHQ.jpeg"
+            alt="react redux logo"
+            style={{
+              width: "100px",
+              height: "100px",
+            }}
+            className="center"
+          />
 
-        <button className="btn" type="submit">
-          Log in
-        </button>
-      </form>
+          <div>
+            <span className="h2" style={{ color: "#724fbe" }}>
+              {" "}
+              SIGN IN
+            </span>
+          </div>
+
+          <form className="d-block my-2" onSubmit={this.handleLogin}>
+            <div>
+              <select
+                className=""
+                value={this.state.value}
+                onChange={this.handleSelect}
+              >
+                <option>User to sign with</option>
+                {this.props.usersInfo.map((user) => {
+                  return (
+                    <option key={user.id} value={user.id}>
+                      {user.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </form>
+        </Card.Body>
+      </Card>
     );
   }
 }

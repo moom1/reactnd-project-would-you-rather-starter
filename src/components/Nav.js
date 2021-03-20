@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { handleResetAuthedUser } from "../actions/authedUser";
 
 class Nav extends Component {
   handleLogout = () => {
-    console.log(this.props.authedUser);
     const { dispatch } = this.props;
     dispatch(handleResetAuthedUser());
   };
 
   render() {
-    const { authorized } = this.props;
+    const { authorized, authedUser } = this.props;
     return (
-      <nav className="nav">
+      <nav className="nav d-flex justify-content-around border-bottom border-primary mb-2">
         <ul>
           <li>
             <NavLink to="/home" exact activeClassName="active">
@@ -32,7 +31,20 @@ class Nav extends Component {
           </li>
 
           {authorized ? (
-            <li>
+            <li className="d-flex justify-content-end">
+              <span>{authedUser.name}</span>
+              <img
+                src={authedUser.avatarURL}
+                style={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  height: " 25px",
+                  border: "1px solid black",
+                  background: "black",
+                }}
+                alt={authedUser.name}
+                className="mx-2"
+              />
               <NavLink
                 to="/login"
                 onClick={this.handleLogout}

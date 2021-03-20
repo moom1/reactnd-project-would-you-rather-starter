@@ -83,9 +83,9 @@ li {
 }
 
 .avatar {
-  height: 50px;
-  border-radius: 25px;
-  margin: 10px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 30px;
 }
 
 .tweet {
@@ -97,6 +97,18 @@ li {
   border: 1px solid #dad7d7;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.question-head {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: skyblue;
 }
 
 .tweet-info {
