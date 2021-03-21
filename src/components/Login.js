@@ -75,7 +75,11 @@ class Login extends Component {
               </select>
             </div>
 
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={this.state.user === null ? true : false}
+            >
               Login
             </Button>
           </form>

@@ -88,9 +88,9 @@ class Home extends Component {
 function mapStateToProps({ authedUser, questions }) {
   let answeredQuestions = [];
   let unansweredQuestion = [];
-  const arrayQuestions = Object.entries(questions).map(
-    (question) => question[1]
-  );
+  let arrayQuestions = Object.entries(questions).map((question) => question[1]);
+
+  arrayQuestions = arrayQuestions.sort((a, b) => b.timestamp - a.timestamp);
 
   arrayQuestions.forEach((q) => {
     if (

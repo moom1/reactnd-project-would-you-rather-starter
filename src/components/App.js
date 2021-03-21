@@ -12,8 +12,6 @@ import CardResult from "./CardResult";
 
 // add loading to the api request thingie. pictures when they load it messes up the page
 
-// filter answered and unanswered questions in home
-
 // make new question
 
 // leaderboard
