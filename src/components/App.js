@@ -8,6 +8,15 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Nav from "./Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CardDetails from "./CardDetails";
+import CardResult from "./CardResult";
+
+// add loading to the api request thingie. pictures when they load it messes up the page
+
+// filter answered and unanswered questions in home
+
+// make new question
+
+// leaderboard
 
 class App extends Component {
   componentDidMount() {
@@ -33,7 +42,12 @@ class App extends Component {
 
                 <Route path="/login" exact component={Login} />
                 <Route path="/home" exact component={Home} />
-                <Route path="/question/:id" component={CardDetails} />
+                <Route path="/question/:id" exact component={CardDetails} />
+                <Route
+                  path="/question/:id/result"
+                  exact
+                  component={CardResult}
+                />
 
                 <Route path="/new-Question" />
                 <Route path="/leaderBoard" />

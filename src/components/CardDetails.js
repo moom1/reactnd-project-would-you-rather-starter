@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Form from "react-bootstrap/Form";
 import { connect } from "react-redux";
-import { increaseVote } from "../actions/questions";
+import { handleVote } from "../actions/shared";
+import { withRouter } from "react-router";
 
 class CardDetails extends Component {
   handleSubmit = (e) => {
@@ -12,58 +12,66 @@ class CardDetails extends Component {
     const { id, authedUser, dispatch } = this.props;
 
     if (e.target.answer[0].checked) {
-      dispatch(increaseVote(id, authedUser.id, "optionOne"));
+      dispatch(handleVote(id, authedUser.id, "optionOne"));
     } else {
-      dispatch(increaseVote(id, authedUser.id, "optionTwo"));
+      dispatch(handleVote(id, authedUser.id, "optionTwo"));
     }
+
+    this.props.history.push(`/question/${id}/result`);
   };
   render() {
     const { question, user } = this.props;
     return (
-      <CardDeck>
-        <Card>
-          <Card.Img
-            variant="top"
-            src={user.avatarURL}
-            style={{
-              borderEndStartRadius: "50%",
-              borderStartEndRadius: "50%",
-              background: "black",
-            }}
-          />
-        </Card>
-        <Card>
-          <Card.Header>Would You Rather...</Card.Header>
+      <div>
+        <div className="question-head">
+          <h3>{user.name} asks: </h3>
+        </div>
 
-          <Card.Body className="center">
-            <Form onSubmit={this.handleSubmit}>
-              <Card key={`default-radio`} className="mb-3">
-                <Card.Header className="mb-4">
-                  <Form.Check
-                    name="answer"
-                    type="radio"
-                    label={question.optionOne.text}
-                    value={question.optionOne.text}
-                  />
-                </Card.Header>
+        <div className="tweet ">
+          <Card>
+            <Card.Img
+              variant="top"
+              src={user.avatarURL}
+              style={{
+                borderEndStartRadius: "50%",
+                borderStartEndRadius: "50%",
+                background: "black",
+              }}
+            />
+          </Card>
+          <Card>
+            <Card.Header>Would You Rather...</Card.Header>
 
-                <Card.Header>
-                  <Form.Check
-                    name="answer"
-                    type="radio"
-                    value={question.optionTwo.text}
-                    label={question.optionTwo.text}
-                  />
-                </Card.Header>
-              </Card>
+            <Card.Body className="center">
+              <Form onSubmit={this.handleSubmit}>
+                <Card key={`default-radio`} className="mb-3">
+                  <Card.Header className="mb-4">
+                    <Form.Check
+                      name="answer"
+                      type="radio"
+                      label={question.optionOne.text}
+                      value={question.optionOne.text}
+                    />
+                  </Card.Header>
 
-              <button className="btn-success btn-lg" type="submit">
-                Submit
-              </button>
-            </Form>
-          </Card.Body>
-        </Card>
-      </CardDeck>
+                  <Card.Header>
+                    <Form.Check
+                      name="answer"
+                      type="radio"
+                      value={question.optionTwo.text}
+                      label={question.optionTwo.text}
+                    />
+                  </Card.Header>
+                </Card>
+
+                <button className="btn-success btn-lg" type="submit">
+                  Submit
+                </button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
     );
   }
 }
@@ -82,4 +90,4 @@ function mapStateToProps({ questions, users, authedUser }, props) {
   };
 }
 
-export default connect(mapStateToProps)(CardDetails);
+export default withRouter(connect(mapStateToProps)(CardDetails));

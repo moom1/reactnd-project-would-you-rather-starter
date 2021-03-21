@@ -5,24 +5,18 @@ import CardCover from "./CardCover";
 
 class Question extends Component {
   render() {
-    const { question, user } = this.props;
+    const { question, user, filter } = this.props;
     return (
       <div>
-        <div className="question-head">
-          <h3>{user.name} asks: </h3>
-        </div>
-
-        {/* <Link to={`/question/${question.id}`} className="tweet"> */}
         <div className="tweet">
-          <CardCover user={user} question={question} />
+          <CardCover user={user} question={question} filter={filter} />
         </div>
-        {/* </Link> */}
       </div>
     );
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, { id }) {
+function mapStateToProps({ authedUser, questions, users }, { id, filter }) {
   const question = questions[id];
   const user = users[question.author];
   return {
@@ -30,6 +24,7 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
     authorized: authedUser.id ? true : false,
     question,
     user,
+    filter,
   };
 }
 

@@ -9,36 +9,56 @@ class CardCover extends Component {
     e.preventDefault();
     this.props.history.push(`/question/${id}`);
   };
+
+  ToResult = (e, id) => {
+    e.preventDefault();
+    this.props.history.push(`/question/${id}/result`);
+  };
   render() {
-    const { question, user } = this.props;
+    const { question, user, filter } = this.props;
     return (
-      <CardDeck>
-        <Card>
-          <Card.Img
-            variant="top"
-            src={user.avatarURL}
-            style={{
-              borderEndStartRadius: "50%",
-              borderStartEndRadius: "50%",
-              background: "black",
-            }}
-          />
-        </Card>
-        <Card>
-          <Card.Header>Would You Rather...</Card.Header>
+      <div>
+        <div className="question-head">
+          <h3>{user.name} asks: </h3>
+        </div>
 
-          <Card.Body className="center">
-            {`... ${question.optionOne.text}...`}
-          </Card.Body>
+        <CardDeck>
+          <Card>
+            <Card.Img
+              variant="top"
+              src={user.avatarURL}
+              style={{
+                borderEndStartRadius: "50%",
+                borderStartEndRadius: "50%",
+                background: "black",
+              }}
+            />
+          </Card>
+          <Card>
+            <Card.Header>Would You Rather...</Card.Header>
 
-          <button
-            className="btn-info"
-            onClick={(e) => this.ToDetails(e, question.id)}
-          >
-            View Poll
-          </button>
-        </Card>
-      </CardDeck>
+            <Card.Body className="center">
+              {`... ${question.optionOne.text}...`}
+            </Card.Body>
+
+            {filter === "unanswered" ? (
+              <button
+                className="btn-info"
+                onClick={(e) => this.ToDetails(e, question.id)}
+              >
+                View Poll
+              </button>
+            ) : (
+              <button
+                className="btn-info"
+                onClick={(e) => this.ToResult(e, question.id)}
+              >
+                View Poll
+              </button>
+            )}
+          </Card>
+        </CardDeck>
+      </div>
     );
   }
 }

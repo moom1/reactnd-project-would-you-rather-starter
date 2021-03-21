@@ -8,7 +8,7 @@ export function receiveQuestions(questions) {
   };
 }
 
-export function increaseVote(questionID, authedUserID, option) {
+export function increaseQuestionVote(questionID, authedUserID, option) {
   return {
     type: INCREASE_VOTE,
     questionID,
