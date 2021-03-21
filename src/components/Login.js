@@ -38,7 +38,6 @@ class Login extends Component {
         <Card.Body>
           <Card.Header>Welcome To The Would You Rather App!</Card.Header>
           <Card.Title className="my-2">Please sign in to continue</Card.Title>
-          {/* finish up the logo and add the h2 SIGN IN part */}
           <Card.Img
             variant="top"
             src="https://miro.medium.com/max/1200/1*i1yreXvK0kGrS9_uy5qKHQ.jpeg"

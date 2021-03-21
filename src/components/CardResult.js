@@ -3,20 +3,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import OptionResult from "./OptionResult";
 import { connect } from "react-redux";
+import { CardDeck } from "react-bootstrap";
 
 class CardResult extends Component {
   render() {
     const { question, user, authedUser } = this.props;
     return (
-      <div>
+      <Card className="tweet">
         <div className="question-head">
           <h3>Asked by {user.name}</h3>
         </div>
 
-        <div className="tweet ">
+        <CardDeck>
           <Card>
             <Card.Img
-              variant="top"
+              className="mx-auto mt-5 text-center"
               src={user.avatarURL}
               style={{
                 borderEndStartRadius: "50%",
@@ -25,6 +26,7 @@ class CardResult extends Component {
               }}
             />
           </Card>
+
           <Card>
             <Card.Header>Results:</Card.Header>
 
@@ -59,8 +61,8 @@ class CardResult extends Component {
               />
             </Card.Body>
           </Card>
-        </div>
-      </div>
+        </CardDeck>
+      </Card>
     );
   }
 }

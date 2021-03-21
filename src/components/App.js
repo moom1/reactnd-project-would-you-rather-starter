@@ -9,7 +9,8 @@ import Nav from "./Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CardDetails from "./CardDetails";
 import CardResult from "./CardResult";
-
+import NewQuestion from "./NewQuestion";
+import Leaderboard from "./Leaderboard";
 // add loading to the api request thingie. pictures when they load it messes up the page
 
 // make new question
@@ -47,8 +48,8 @@ class App extends Component {
                   component={CardResult}
                 />
 
-                <Route path="/new-Question" />
-                <Route path="/leaderBoard" />
+                <Route path="/add" exact component={NewQuestion} />
+                <Route path="/leaderboard" exact component={Leaderboard} />
               </div>
             )}
           </div>

@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { connect } from "react-redux";
 import { handleVote } from "../actions/shared";
 import { withRouter } from "react-router";
+import { CardDeck } from "react-bootstrap";
 
 class CardDetails extends Component {
   handleSubmit = (e) => {
@@ -21,12 +22,12 @@ class CardDetails extends Component {
   render() {
     const { question, user } = this.props;
     return (
-      <div>
+      <Card className="tweet">
         <div className="question-head">
           <h3>{user.name} asks: </h3>
         </div>
 
-        <div className="tweet ">
+        <CardDeck>
           <Card>
             <Card.Img
               variant="top"
@@ -69,8 +70,8 @@ class CardDetails extends Component {
               </Form>
             </Card.Body>
           </Card>
-        </div>
-      </div>
+        </CardDeck>
+      </Card>
     );
   }
 }

@@ -28,6 +28,7 @@ class Question extends Component {
             <CardDeck>
               <Card>
                 <Card.Img
+                  className="mx-auto mt-2 text-center"
                   variant="top"
                   src={user.avatarURL}
                   style={{
