@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
-import Form from "react-bootstrap/Form";
 import OptionResult from "./OptionResult";
 import { connect } from "react-redux";
 
@@ -69,7 +67,6 @@ class CardResult extends Component {
 
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { id } = props.match.params;
-  console.log("id: ", id);
   const question = questions[id];
 
   const user = users[question.author];

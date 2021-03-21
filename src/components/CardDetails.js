@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
 import Form from "react-bootstrap/Form";
 import { connect } from "react-redux";
 import { handleVote } from "../actions/shared";

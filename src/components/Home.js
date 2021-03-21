@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import Question from "./Question";
 import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 
@@ -73,6 +72,12 @@ class Home extends Component {
                 />
               </li>
             ))}
+
+            {questions.length === 0 && (
+              <div className="m-5 h4 center">
+                Enjoying the game huh! DO wait for more questions :P
+              </div>
+            )}
           </ul>
         </div>
       </Card>
