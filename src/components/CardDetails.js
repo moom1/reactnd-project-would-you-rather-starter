@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { connect } from "react-redux";
 import { handleVote } from "../actions/shared";
-import { withRouter } from "react-router";
+import { withRouter, Redirect } from "react-router";
 import { CardDeck } from "react-bootstrap";
 
 class CardDetails extends Component {
@@ -21,6 +21,9 @@ class CardDetails extends Component {
   };
   render() {
     const { question, user } = this.props;
+    if (!user.id) {
+      return <Redirect to="/login" />;
+    }
     return (
       <Card className="tweet">
         <div className="question-head">
@@ -79,6 +82,15 @@ class CardDetails extends Component {
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { id } = props.match.params;
   const question = questions[id];
+
+  if (!question) {
+    return {
+      question: {},
+      user: {},
+      id: {},
+      authedUser: {},
+    };
+  }
 
   const user = users[question.author];
 

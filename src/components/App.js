@@ -11,11 +11,6 @@ import CardDetails from "./CardDetails";
 import CardResult from "./CardResult";
 import NewQuestion from "./NewQuestion";
 import Leaderboard from "./Leaderboard";
-// add loading to the api request thingie. pictures when they load it messes up the page
-
-// make new question
-
-// leaderboard
 
 class App extends Component {
   componentDidMount() {
