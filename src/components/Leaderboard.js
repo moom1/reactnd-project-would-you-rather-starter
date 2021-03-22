@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import { Redirect } from "react-router";
+import { Redirect, withRouter } from "react-router";
 
 import { connect } from "react-redux";
 import UserStats from "./UserStats";
@@ -10,7 +10,11 @@ class Leaderboard extends Component {
   render() {
     const { users, notAuthorized } = this.props;
     if (notAuthorized) {
-      return <Redirect to="/login" />;
+      return (
+        <Redirect
+          to={{ pathname: "/login", state: { redirect: "/leaderboard" } }}
+        />
+      );
     }
     return (
       <Card className="tweet">
@@ -41,4 +45,4 @@ function mapStateToProps({ users, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(Leaderboard);
+export default withRouter(connect(mapStateToProps)(Leaderboard));

@@ -18,7 +18,9 @@ class Home extends Component {
     let questions = [];
     const { notAuthorized, answeredQuestions, unansweredQuestion } = this.props;
     if (notAuthorized) {
-      return <Redirect to="/login" />;
+      return (
+        <Redirect to={{ pathname: "/login", state: { redirect: "/home" } }} />
+      );
     }
 
     if (this.state.questionsToShow === "unanswered") {

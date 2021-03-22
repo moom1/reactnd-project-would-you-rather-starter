@@ -20,10 +20,27 @@ class CardDetails extends Component {
     this.props.history.push(`/question/${id}/result`);
   };
   render() {
-    const { question, user } = this.props;
-    if (!user.id) {
-      return <Redirect to="/login" />;
+    const { id, question, user, notAuthorized } = this.props;
+    if (notAuthorized) {
+      if (question) {
+        return (
+          <Redirect
+            to={{ pathname: "/login", state: { redirect: `/`, error: "404" } }}
+          />
+        );
+      } else {
+        return (
+          <Redirect
+            to={{ pathname: "/login", state: { redirect: `/question/${id}` } }}
+          />
+        );
+      }
     }
+
+    if (!user.id) {
+      return <Redirect to={{ pathname: "/" }} />;
+    }
+
     return (
       <Card className="tweet">
         <div className="question-head">
@@ -85,10 +102,11 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 
   if (!question) {
     return {
-      question: {},
+      question,
+      id,
+      authedUser,
+      notAuthorized: authedUser.id ? false : true,
       user: {},
-      id: {},
-      authedUser: {},
     };
   }
 
@@ -99,6 +117,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
     user,
     id,
     authedUser,
+    notAuthorized: authedUser.id ? false : true,
   };
 }
 

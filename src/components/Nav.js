@@ -46,7 +46,7 @@ class Nav extends Component {
                 className="mx-2"
               />
               <NavLink
-                to="/login"
+                to="/logout"
                 onClick={this.handleLogout}
                 activeClassName="active"
               >

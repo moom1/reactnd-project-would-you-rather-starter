@@ -35,10 +35,12 @@ class NewQuestion extends Component {
   };
 
   render() {
-    if (this.props.notAuthorized) {
-      return <Redirect to="/login" />;
+    const { notAuthorized } = this.props;
+    if (notAuthorized) {
+      return (
+        <Redirect to={{ pathname: "/login", state: { redirect: "/add" } }} />
+      );
     }
-
     const toHome = this.state.toHome;
     if (toHome === true) {
       return <Redirect to="/home" />;

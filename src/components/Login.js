@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router";
+import { withRouter } from "react-router";
 import { handleAuthedUser } from "../actions/authedUser";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -22,17 +22,33 @@ class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     const { user } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
     dispatch(handleAuthedUser(user));
     this.setState(() => ({
       toHome: true,
     }));
+
+    let page = "/";
+    if (this.props.location.state !== null) {
+      if (
+        this.props.location.state.redirect === "/home" ||
+        this.props.location.state.redirect === "/leaderboard" ||
+        this.props.location.state.redirect === "/add" ||
+        this.props.location.state.redirect.startsWith("/question")
+      ) {
+        page = this.props.location.state.redirect;
+      } else if (this.props.location.state.redirect === "/") {
+        page = "/home";
+      } else {
+        page = "/";
+      }
+    } else {
+      page = "/home";
+    }
+
+    return history.push(page);
   };
   render() {
-    const toHome = this.state.toHome;
-    if (toHome === true) {
-      return <Redirect to="/home" />;
-    }
     return (
       <Card className="center">
         <Card.Body>
